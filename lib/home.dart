@@ -1,3 +1,4 @@
+import 'package:clubhouse/componets/bottomsheet.dart';
 import 'package:clubhouse/constant.dart';
 import 'package:clubhouse/model/house_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,7 +21,6 @@ class HomeClass extends StatefulWidget {
 class _HomeClassState extends State<HomeClass> {
   @override
   Widget build(BuildContext context) {
-    bool isSelected = false;
     List<HouseModel> housemodel = getListOfHouse();
     return Scaffold(
       backgroundColor: themecolor,
@@ -77,112 +77,7 @@ class _HomeClassState extends State<HomeClass> {
                           ),
                         ),
                         context: context,
-                        builder: (context) {
-                          return Padding(
-                            padding: const EdgeInsets.only(
-                                left: 20.0, right: 20, top: 8),
-                            child: Column(
-                              // mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Container(
-                                  width: 40,
-                                  height: 6,
-                                  decoration: BoxDecoration(
-                                      color: Colors.grey[400],
-                                      borderRadius: BorderRadius.circular(20)),
-                                ),
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: TextButton(
-                                    onPressed: () {},
-                                    child: Text(
-                                      "+ Add a title",
-                                      style: kFontgrey.copyWith(
-                                          color: buttoncolor),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                SizedBox(
-                                  height: 400,
-                                  child: GridView.builder(
-                                    gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
-                                            childAspectRatio: 3 / 3.5,
-                                            crossAxisCount: 3),
-                                    itemCount: 4,
-                                    itemBuilder: (context, index) {
-                                      return InkWell(
-                                        onTap: () {
-                                          setState(() {
-                                            print(isSelected);
-                                            isSelected = !isSelected;
-                                          });
-                                        },
-                                        child: isSelected
-                                            ? Container(
-                                                decoration: BoxDecoration(
-                                                  color: const Color.fromRGBO(
-                                                      225, 228, 241, 1),
-                                                  border: Border.all(
-                                                    color: const Color.fromRGBO(
-                                                        214, 215, 219, 1),
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                ),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 10),
-                                                  child: Column(
-                                                    children: [
-                                                      Image.asset(
-                                                        "assets/open.png",
-                                                        height: 100,
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 5,
-                                                      ),
-                                                      Text(
-                                                        "Open",
-                                                        style: kFont,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              )
-                                            : Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 10),
-                                                child: Column(
-                                                  children: [
-                                                    Image.asset(
-                                                      "assets/open.png",
-                                                      height: 100,
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                    Text(
-                                                      "Open",
-                                                      style: kFont,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                const Divider(
-                                  thickness: 1.5,
-                                ),
-                              ],
-                            ),
-                          );
-                        },
+                        builder: (context) => const Mybottomsheet(),
                       );
                     },
                     child: Container(
