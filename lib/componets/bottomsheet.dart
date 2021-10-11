@@ -37,59 +37,7 @@ class _MybottomsheetState extends State<Mybottomsheet> {
               onPressed: () {
                 showCupertinoDialog(
                   context: context,
-                  builder: (context) {
-                    return CupertinoAlertDialog(
-                      content: Padding(
-                        padding: EdgeInsets.all(4),
-                        child: CupertinoTextField(
-                          controller: controller,
-                          maxLength: 60,
-                          maxLines: 6,
-                        ),
-                      ),
-                      title: Column(
-                        children: const [
-                          Text(
-                            'Add a Title',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            'e.g Raising wolves - good idea ?',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w400),
-                          )
-                        ],
-                      ),
-                      actions: [
-                        CupertinoDialogAction(
-                          onPressed: () {
-                            print(controller.text);
-                            controller.clear();
-                            Navigator.pop(context);
-                          },
-                          child: const Text(
-                            'Cancel',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                        CupertinoDialogAction(
-                          onPressed: () {
-                           
-                            print(controller.text);
-                            controller.clear();
-                             Navigator.pop(context);
-                          },
-                          child: const Text(
-                            'Set Title',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
+                  builder: (context) => MyDialog(controller: controller),
                 );
               },
               child: Text(
@@ -206,6 +154,65 @@ class _MybottomsheetState extends State<Mybottomsheet> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class MyDialog extends StatelessWidget {
+  const MyDialog({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final TextEditingController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoAlertDialog(
+      content: Padding(
+        padding: EdgeInsets.all(4),
+        child: CupertinoTextField(
+          controller: controller,
+          maxLength: 60,
+          maxLines: 6,
+        ),
+      ),
+      title: Column(
+        children: const [
+          Text(
+            'Add a Title',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          Text(
+            'e.g Raising wolves - good idea ?',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+          )
+        ],
+      ),
+      actions: [
+        CupertinoDialogAction(
+          onPressed: () {
+            print(controller.text);
+            controller.clear();
+            Navigator.pop(context);
+          },
+          child: const Text(
+            'Cancel',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          ),
+        ),
+        CupertinoDialogAction(
+          onPressed: () {
+            print(controller.text);
+            controller.clear();
+            Navigator.pop(context);
+          },
+          child: const Text(
+            'Set Title',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          ),
+        ),
+      ],
     );
   }
 }
